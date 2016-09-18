@@ -191,7 +191,7 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 	int contadorI = 0, contadorJ = 0;
 	int j, k;
 
-	arquivo1.seekg(-2,ios_base::cur);
+	arquivo1.seekg(1,ios_base::cur);
 
 	for(j = 0; j < altura; j++)
 	{
