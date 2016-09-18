@@ -6,7 +6,7 @@ int main (){
 
 	cout << "\nBem vindo a tela inicial para aplicação de filtro em imagens! " << endl;
 	cout << "\n\n No momento temos apenas os seguintes filtros: " << endl;
-	cout << "\n\n\n(1) - Negativo\n(2) - Polarizado\n(3) - Preto e Branco\n(4) - Média\n(0) - Sair\n" << endl;
+	cout << "\n\n\n(1) - Normal\n(2) - Negativo\n(3) - Polarizado\n(4) - Preto e Branco\n(5) - Média\n(0) - Sair\n" << endl;
 
 	int opcao = 0;
 

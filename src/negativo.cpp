@@ -68,13 +68,13 @@ void Negativo::armazenaPixel(ofstream &arquivodesaida){
 		{
 		//matrizR[i][j] = **getMatrizR();
 		Raux[i][j] = max_cor - matrizR[i][j];
-		arquivodesaida.put((char)Raux[i][j]);
+		arquivodesaida << (char)Raux[i][j];
 		//matrizG[i][j] = **getMatrizG();
 		Gaux[i][j] = max_cor - matrizG[i][j];
-		arquivodesaida.put((char)Gaux[i][j]);
+		arquivodesaida << (char)Gaux[i][j];
 		//matrizB[i][j] = **getMatrizB();
 		Baux[i][j] = max_cor - matrizB[i][j];
-		arquivodesaida.put((char)Baux[i][j]);
+		arquivodesaida << (char)Baux[i][j];
 		}
 
 	}
