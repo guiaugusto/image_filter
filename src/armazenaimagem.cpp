@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <iostream>
 #include <cstring>
+#include <vector>
 
 using namespace std;
 
@@ -33,6 +34,7 @@ ArmazenaImagem::ArmazenaImagem(string tipo, int largura, int altura, int max_cor
 	this->pixelB = pixelB;
 	this->contadorI = contadorI;
 	this->contadorJ = contadorJ;
+
 }
 
 string ArmazenaImagem::getTipo(){
@@ -164,6 +166,12 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 
 	char r, g, b;
 
+	setTipo(tipo);
+	setLargura(largura);
+	setAltura(altura);
+	setMax_Cor(max_cor);
+
+
 	string nomedoarquivo2;
 
 	cout << "Digite o nome da nova imagem que foi alterada pelo filtro selecionado: " << endl;
@@ -185,13 +193,25 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 	arquivodesaida << largura << " " << altura << endl;
 	arquivodesaida << max_cor << endl;
 
-	//arquivodesaida.close();
 
 	int pixelR, pixelG, pixelB;
 	int contadorI = 0, contadorJ = 0;
 	int j, k;
 
 	arquivo1.seekg(1,ios_base::cur);
+
+	matrizR = new int*[altura];
+	for(int i = 0; i < altura; i++)
+	matrizR[i] = new int[largura];
+
+	matrizG = new int*[altura];
+	for(int i = 0; i < altura; i++)
+	matrizG[i] = new int[largura];
+
+	matrizB = new int*[altura];
+	for(int i = 0; i < altura; i++)
+	matrizB[i] = new int[largura];
+
 
 	for(j = 0; j < altura; j++)
 	{
@@ -208,46 +228,46 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 		pixelR = (int)r;
 		pixelG = (int)g;
 		pixelB = (int)b;
+		matrizR[j][k] = (int)r;
+		matrizG[j][k] = (int)g;
+		matrizB[j][k] = (int)b;
+		//setR(pixelR);
+		//setG(pixelG);
+		//setB(pixelB);
 
-		ArmazenaImagem *transfere = new ArmazenaImagem(tipo, largura, altura, max_cor, pixelR, pixelG, pixelB, contadorI, contadorJ);
-		transfere->armazenaPixel(largura, altura, max_cor, pixelR, pixelG, pixelB, contadorI, contadorJ, arquivodesaida);
-		contadorJ++;//coluna
+		//ArmazenaImagem *transfere = new ArmazenaImagem();
+		//transfere->armazenaPixel(arquivodesaida);
+		//contadorJ++;//coluna
 		}
-		contadorI++;//linha
+		//contadorI++;//linha
 
 	}
 
 	}
+
+	armazenaPixel(arquivodesaida);
+
 	arquivo1.close();
 	arquivodesaida.close();
 }
 
-void ArmazenaImagem::armazenaPixel(int largura, int altura, int max_cor, int pixelR, int pixelG, int pixelB, int contadorI, int contadorJ, ofstream &arquivodesaida){
+void ArmazenaImagem::armazenaPixel(ofstream &arquivodesaida){
 
+	int Raux[altura][largura], Gaux[altura][largura], Baux[altura][largura]; 
 
-	//ArmazenaImagem *valores = new ArmazenaImagem(tipo, largura, altura, max_cor, pixelR, pixelG, pixelB, contadorI, contadorJ);
+	for(int i = 0; i < altura; i++)
+	{
+		for(int j = 0; j < largura; j++)
+		{
+		Raux[i][j] = matrizR[i][j];
+		arquivodesaida << (char)Raux[i][j];
+		Gaux[i][j] = matrizG[i][j];
+		arquivodesaida << (char)Gaux[i][j];
+		Baux[i][j] = matrizB[i][j];
+		arquivodesaida << (char)Baux[i][j];
+		}
 
-	//int R[largura][altura], G[largura][altura], B[largura][altura];
-
-	//cout << "Valores transferidos: " << endl;
-	//cout << largura << " " << altura << " " << pixelR << " " << pixelG << " "  << pixelB << endl;
-	char r = pixelR;
-	char g = pixelG;
-	char b = pixelB;
-
-
-	//if(contadorJ+1 == largura)
-	//arquivodesaida << "\n";
-
-
-	arquivodesaida << r;
-	arquivodesaida << g;
-	arquivodesaida << b;
-	//arquivodesaida.put(b);
-	//arquivodesaida.put(r);
-	//arquivodesaida.put(g);
-
-	//arquivodesaida << r << g << b;
-
+	}
 
 }
+

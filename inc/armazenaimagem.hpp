@@ -4,8 +4,7 @@
 #include <string>
 #include <cstdio>
 #include <fstream>
-#include <sstream>
-
+#include <cstdlib>
 
 using namespace std;
 
@@ -16,16 +15,10 @@ private:
 	string tipo;
 	int largura, altura, max_cor, contadorI, contadorJ;
 	int pixelR, pixelG, pixelB;
-
+	int **matrizR, **matrizG, **matrizB;
 public:
 
 	ofstream arquivosaida;
-	/*typedef struct pixelrgb{
-	unsigned char r;
-	unsigned char g;
-	unsigned char b;
-	}pxlRGB; */
-
 	//Métodos
 	ArmazenaImagem();
 	~ArmazenaImagem();
@@ -51,7 +44,6 @@ public:
 	void setContadorJ(int contadorJ);
 
 	void armazenaDados(ofstream &arquivodesaida);
-	virtual	void armazenaPixel(int largura, int altura, int max_cor, int pixelR, int pixelG, int pixelB, int contadorI, int contadorJ, ofstream &arquivodesaida);
-
+	virtual	void armazenaPixel(ofstream &arquivodesaida);
 };
 #endif
