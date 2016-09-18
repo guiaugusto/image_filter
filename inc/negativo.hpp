@@ -6,10 +6,12 @@
 
 class Negativo : public ArmazenaImagem {
 
+public:
 
-
-
-
+	Negativo();
+	~Negativo();
+	Negativo(int largura, int altura, int max_cor);
+	void armazenaPixel(ofstream &arquivodesaida);
 
 
 };

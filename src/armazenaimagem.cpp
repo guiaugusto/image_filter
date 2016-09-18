@@ -13,28 +13,17 @@ ArmazenaImagem::ArmazenaImagem(){
 	largura = 0;
 	altura = 0;
 	max_cor = 255;
-	contadorI = 0;
-	contadorJ = 0;
-	pixelR = 0;
-	pixelG = 0;
-	pixelB = 0;
 }
 
 ArmazenaImagem::~ArmazenaImagem(){
 
 }
 
-ArmazenaImagem::ArmazenaImagem(string tipo, int largura, int altura, int max_cor, int pixelR, int pixelG, int pixelB, int contadorI, int contadorJ){
+ArmazenaImagem::ArmazenaImagem(string tipo, int largura, int altura, int max_cor){
 	this->tipo = tipo;
 	this->largura = largura;
 	this->altura = altura;
 	this->max_cor = max_cor;
-	this->pixelR = pixelR;
-	this->pixelG = pixelG;
-	this->pixelB = pixelB;
-	this->contadorI = contadorI;
-	this->contadorJ = contadorJ;
-
 }
 
 string ArmazenaImagem::getTipo(){
@@ -68,47 +57,40 @@ int ArmazenaImagem::getMax_Cor(){
 void ArmazenaImagem::setMax_Cor(int max_cor){
 	this->max_cor = max_cor;
 }
-
-int ArmazenaImagem::getR(){
-	return pixelR;
+/*
+int ** ArmazenaImagem::getMatrizR(){
+	return matrizR;
 }
 
-void ArmazenaImagem::setR(int pixelR){
-	this->pixelR = pixelR;
+void ArmazenaImagem::setMatrizR(int **matrizR){
+	this->matrizR = matrizR;
+	//matrizR = new int*[1];
+	//for(int i = 0; i < 1; i++)
+	//matrizR[i] = new int[1];
 }
 
-int ArmazenaImagem::getG(){
-	return pixelG;
+int ** ArmazenaImagem::getMatrizG(){
+	return matrizG;
 }
 
-void ArmazenaImagem::setG(int pixelG){
-	this->pixelG = pixelG;
+void ArmazenaImagem::setMatrizG(int **matrizG){
+	this->matrizG = matrizG;
+	//matrizG = new int*[1];
+	//for(int i = 0; i < 1; i++)
+	//matrizG[i] = new int[1];
 }
 
-int ArmazenaImagem::getB(){
-	return pixelB;
+int ** ArmazenaImagem::getMatrizB(){
+	return matrizB;
 }
 
-void ArmazenaImagem::setB(int pixelB){
-	this->pixelB = pixelB;
+void ArmazenaImagem::setMatrizB(int **matrizB){
+	this->matrizB = matrizB;
+	//matrizB = new int*[1];
+	//for(int i = 0; i < 1; i++)
+	//matrizB[i] = new int[1];
 }
-
-int ArmazenaImagem::getContadorI(){
-	return contadorI;
-}
-
-void ArmazenaImagem::setContadorI(int contadorI){
-	this->contadorI = contadorI;
-}
-
-int ArmazenaImagem::getContadorJ(){
-	return contadorJ;
-}
-
-void ArmazenaImagem::setContadorJ(int contadorJ){
-	this->contadorJ = contadorJ;
-}
-
+*/
 void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 
 	ifstream arquivo1;
@@ -185,7 +167,7 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 	cin >> nomedoarquivo2;
 	}
 
-	arquivodesaida.open(nomedoarquivo2.c_str());
+	arquivodesaida.open(nomedoarquivo2.c_str(),ios::binary);
 
 	//fazer condição para caso aconteça algum erro
 
@@ -193,9 +175,8 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 	arquivodesaida << largura << " " << altura << endl;
 	arquivodesaida << max_cor << endl;
 
+	//int pixelR, pixelG, pixelB;
 
-	int pixelR, pixelG, pixelB;
-	int contadorI = 0, contadorJ = 0;
 	int j, k;
 
 	arquivo1.seekg(1,ios_base::cur);
@@ -225,9 +206,9 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 		arquivo1.get(b);
 		//if(b == '\n')
 		//arquivo1.get(b);
-		pixelR = (int)r;
-		pixelG = (int)g;
-		pixelB = (int)b;
+		//pixelR = (int)r;
+		//pixelG = (int)g;
+		//pixelB = (int)b;
 		matrizR[j][k] = (int)r;
 		matrizG[j][k] = (int)g;
 		matrizB[j][k] = (int)b;
@@ -249,11 +230,12 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 
 	arquivo1.close();
 	arquivodesaida.close();
+
 }
 
 void ArmazenaImagem::armazenaPixel(ofstream &arquivodesaida){
 
-	int Raux[altura][largura], Gaux[altura][largura], Baux[altura][largura]; 
+	int Raux[altura][largura], Gaux[altura][largura], Baux[altura][largura];
 
 	for(int i = 0; i < altura; i++)
 	{
@@ -268,6 +250,7 @@ void ArmazenaImagem::armazenaPixel(ofstream &arquivodesaida){
 		}
 
 	}
+
 
 }
 

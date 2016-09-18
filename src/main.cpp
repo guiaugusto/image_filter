@@ -1,4 +1,5 @@
 #include "armazenaimagem.hpp"
+#include "negativo.hpp"
 
 int main (){
 
@@ -12,16 +13,15 @@ int main (){
 	cin >> opcao;
 
 	ArmazenaImagem *armazena = new ArmazenaImagem();
+	Negativo *negativo = new Negativo();
 
 	ofstream arquivodesaida;
 
+	if(opcao == 0)
 	armazena->armazenaDados(arquivodesaida);
 
-
-
-
-
-
+	if(opcao == 2)
+	negativo->armazenaDados(arquivodesaida);
 
 
 
