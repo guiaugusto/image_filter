@@ -13,9 +13,9 @@ int main (){
 
 	ArmazenaImagem *armazena = new ArmazenaImagem();
 
-	armazena->modificaImagem();
+	ofstream arquivodesaida;
 
-
+	armazena->armazenaDados(arquivodesaida);
 
 
 
