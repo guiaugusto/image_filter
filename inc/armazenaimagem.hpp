@@ -14,26 +14,14 @@ private:
 
 	string tipo;
 	int largura, altura, max_cor;
+	//char **matrizR, **matrizG, **matrizB;
 
 public:
 
-	int **matrizR, **matrizG, **matrizB;
-	//int matrizR[altura][largura], matrizG[altura][largura], matrizB[altura][largura];
-/*
-	int i;
+	char **matrizR, **matrizG, **matrizB;
 
-	matrizR = new int*[altura];
-	for(i = 0; i < altura; i++)
-	matrizR[i] = new int[largura];
 
-	matrizG = new int*[altura];
-	for(i = 0; i < altura; i++)
-	matrizG[i] = new int[largura];
 
-	matrizB = new int*[altura];
-	for(i = 0; i < altura; i++)
-	matrizB[i] = new int[largura];
-*/
 	ofstream arquivosaida;
 	//Métodos
 	ArmazenaImagem();
@@ -47,13 +35,13 @@ public:
 	void setAltura(int altura);
 	int getMax_Cor();
 	void setMax_Cor(int max_cor);
-/*	int ** getMatrizR();
-	void setMatrizR(int **matrizR);
-	int ** getMatrizG();
-	void setMatrizG(int **matrizG);
-	int ** getMatrizB();
-	void setMatrizB(int **matrizB); */
-
+/*	char getMatrizR();
+	void setMatrizR(char **matrizR);
+	char getMatrizG();
+	void setMatrizG(char **matrizG);
+	char getMatrizB();
+	void setMatrizB(char **matrizB);
+*/
 	void armazenaDados(ofstream &arquivodesaida);
 	virtual	void armazenaPixel(ofstream &arquivodesaida);
 };

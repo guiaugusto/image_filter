@@ -6,8 +6,12 @@
 
 class Polarizado : public ArmazenaImagem{
 
+public:
 
-
+	Polarizado();
+	~Polarizado();
+	Polarizado(int largura, int altura, int max_cor);
+	void armazenaPixel(ofstream &arquivodesaida);
 
 
 

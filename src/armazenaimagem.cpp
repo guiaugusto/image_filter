@@ -13,6 +13,19 @@ ArmazenaImagem::ArmazenaImagem(){
 	largura = 0;
 	altura = 0;
 	max_cor = 255;
+
+	matrizR = new char*[altura];
+	for(int i = 0; i < altura; i++)
+	matrizR[i] = new char[largura];
+
+	matrizG = new char*[altura];
+	for(int i = 0; i < altura; i++)
+	matrizG[i] = new char[largura];
+
+	matrizB = new char*[altura];
+	for(int i = 0; i < altura; i++)
+	matrizB[i] = new char[largura];
+
 }
 
 ArmazenaImagem::~ArmazenaImagem(){
@@ -57,40 +70,7 @@ int ArmazenaImagem::getMax_Cor(){
 void ArmazenaImagem::setMax_Cor(int max_cor){
 	this->max_cor = max_cor;
 }
-/*
-int ** ArmazenaImagem::getMatrizR(){
-	return matrizR;
-}
 
-void ArmazenaImagem::setMatrizR(int **matrizR){
-	this->matrizR = matrizR;
-	//matrizR = new int*[1];
-	//for(int i = 0; i < 1; i++)
-	//matrizR[i] = new int[1];
-}
-
-int ** ArmazenaImagem::getMatrizG(){
-	return matrizG;
-}
-
-void ArmazenaImagem::setMatrizG(int **matrizG){
-	this->matrizG = matrizG;
-	//matrizG = new int*[1];
-	//for(int i = 0; i < 1; i++)
-	//matrizG[i] = new int[1];
-}
-
-int ** ArmazenaImagem::getMatrizB(){
-	return matrizB;
-}
-
-void ArmazenaImagem::setMatrizB(int **matrizB){
-	this->matrizB = matrizB;
-	//matrizB = new int*[1];
-	//for(int i = 0; i < 1; i++)
-	//matrizB[i] = new int[1];
-}
-*/
 void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 
 	ifstream arquivo1;
@@ -101,7 +81,7 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 
 	nomedoarquivo1 = "./doc/" + nomedoarquivo1 + ".ppm";
 
-	arquivo1.open(nomedoarquivo1.c_str());
+	arquivo1.open(nomedoarquivo1.c_str(), ios::binary);
 
 	if(!arquivo1.is_open())
 	{
@@ -130,8 +110,6 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 	if(comentario[0] != '#')
 	{
 	cout << "Comentario armazenado: " << comentario << endl;
-	//int tamanho;
-	//int tamanho = strlen(comentario);
 	int tamanho = comentario.length()+1;
 	cout << "Tamanho do comentário: " << tamanho << endl;
 	arquivo1.seekg(-tamanho,ios_base::cur);
@@ -146,13 +124,13 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 
 	}
 
-	char r, g, b;
 
 	setTipo(tipo);
 	setLargura(largura);
 	setAltura(altura);
 	setMax_Cor(max_cor);
 
+	arquivo1.seekg(1,ios_base::cur);
 
 	string nomedoarquivo2;
 
@@ -175,23 +153,20 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 	arquivodesaida << largura << " " << altura << endl;
 	arquivodesaida << max_cor << endl;
 
-	//int pixelR, pixelG, pixelB;
-
 	int j, k;
+	char r, g, b;
 
-	arquivo1.seekg(1,ios_base::cur);
-
-	matrizR = new int*[altura];
+	matrizR = new char*[altura];
 	for(int i = 0; i < altura; i++)
-	matrizR[i] = new int[largura];
+	matrizR[i] = new char[largura];
 
-	matrizG = new int*[altura];
+	matrizG = new char*[altura];
 	for(int i = 0; i < altura; i++)
-	matrizG[i] = new int[largura];
+	matrizG[i] = new char[largura];
 
-	matrizB = new int*[altura];
+	matrizB = new char*[altura];
 	for(int i = 0; i < altura; i++)
-	matrizB[i] = new int[largura];
+	matrizB[i] = new char[largura];
 
 
 	for(j = 0; j < altura; j++)
@@ -199,28 +174,12 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 		for(k = 0; k < largura; k++)
 		{
 		arquivo1.get(r);
-		//if(r == '\n')
 		arquivo1.get(g);
-		//if(g == '\n')
-		//arquivo1.get(g);
 		arquivo1.get(b);
-		//if(b == '\n')
-		//arquivo1.get(b);
-		//pixelR = (int)r;
-		//pixelG = (int)g;
-		//pixelB = (int)b;
-		matrizR[j][k] = (int)r;
-		matrizG[j][k] = (int)g;
-		matrizB[j][k] = (int)b;
-		//setR(pixelR);
-		//setG(pixelG);
-		//setB(pixelB);
-
-		//ArmazenaImagem *transfere = new ArmazenaImagem();
-		//transfere->armazenaPixel(arquivodesaida);
-		//contadorJ++;//coluna
+		matrizR[j][k] = r;
+		matrizG[j][k] = g;
+		matrizB[j][k] = b;
 		}
-		//contadorI++;//linha
 
 	}
 
@@ -235,20 +194,35 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 
 void ArmazenaImagem::armazenaPixel(ofstream &arquivodesaida){
 
-	int Raux[altura][largura], Gaux[altura][largura], Baux[altura][largura];
 
+	int **Raux, **Gaux, **Baux;
+
+	Raux = new int*[altura];
 	for(int i = 0; i < altura; i++)
+	Raux[i] = new int[largura];
+
+	Gaux = new int*[altura];
+	for(int i = 0; i < altura; i++)
+	Gaux[i] = new int[largura];
+
+	Baux = new int*[altura];
+	for(int i = 0; i < altura; i++)
+	Baux[i] = new int[largura];
+
+
+	int i, j;
+
+	for(i = 0; i < altura; i++)
 	{
-		for(int j = 0; j < largura; j++)
+		for(j = 0; j < largura; j++)
 		{
-		Raux[i][j] = matrizR[i][j];
+		Raux[i][j] = (unsigned int)matrizR[i][j];
 		arquivodesaida << (char)Raux[i][j];
-		Gaux[i][j] = matrizG[i][j];
+		Gaux[i][j] = (unsigned int)matrizG[i][j];
 		arquivodesaida << (char)Gaux[i][j];
-		Baux[i][j] = matrizB[i][j];
+		Baux[i][j] = (unsigned int)matrizB[i][j];
 		arquivodesaida << (char)Baux[i][j];
 		}
-
 	}
 
 
