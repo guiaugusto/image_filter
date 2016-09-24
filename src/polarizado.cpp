@@ -29,7 +29,7 @@ void Polarizado::armazenaPixel(ofstream &arquivodesaida){
 	altura = getAltura();
 	max_cor = getMax_Cor();
 
-	unsigned int Raux, Gaux, Baux;
+	int Raux, Gaux, Baux;
 
 	int i, j;
 
@@ -38,26 +38,26 @@ void Polarizado::armazenaPixel(ofstream &arquivodesaida){
 		for(j = 0; j < largura; j++)
 		{
 		Raux = matrizR[i][j];
-		if(Raux > (unsigned int)max_cor/2)
+		if(Raux > max_cor/2)
 		matrizR[i][j] = max_cor;
 		else
 		matrizR[i][j] = 0;
 
 		Gaux = matrizG[i][j];
-		if(Gaux > (unsigned int)max_cor/2)
+		if(Gaux > max_cor/2)
 		matrizG[i][j] = max_cor;
 		else
 		matrizG[i][j] = 0;
 
 		Baux = matrizB[i][j];
-		if(Baux > (unsigned int)max_cor/2)
+		if(Baux > max_cor/2)
 		matrizB[i][j] = max_cor;
 		else
 		matrizB[i][j] = 0;
 
-		arquivodesaida << matrizR[i][j];
-		arquivodesaida << matrizG[i][j];
-		arquivodesaida << matrizB[i][j];
+		arquivodesaida << (char)matrizR[i][j];
+		arquivodesaida << (char)matrizG[i][j];
+		arquivodesaida << (char)matrizB[i][j];
 
 
 		}

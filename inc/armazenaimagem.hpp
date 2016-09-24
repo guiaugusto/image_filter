@@ -18,7 +18,7 @@ private:
 
 public:
 
-	char **matrizR, **matrizG, **matrizB;
+	unsigned char **matrizR, **matrizG, **matrizB;
 
 
 
@@ -44,5 +44,7 @@ public:
 */
 	void armazenaDados(ofstream &arquivodesaida);
 	virtual	void armazenaPixel(ofstream &arquivodesaida);
+
 };
+
 #endif

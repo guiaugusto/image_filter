@@ -10,7 +10,7 @@ public:
 
 	Media3x3();
 	~Media3x3();
-	Media3x3(int largura, int altura, int max_cor);
+	Media3x3(int largura, int altura);
 	void armazenaPixel(ofstream &arquivodesaida);
 
 

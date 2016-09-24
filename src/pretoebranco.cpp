@@ -31,7 +31,7 @@ void PretoeBranco::armazenaPixel(ofstream &arquivodesaida){
 
 	int i, j;
 
-	char cinza;
+	int cinza;
 
 	for(i = 0; i < altura; i++)
 	{
@@ -49,9 +49,9 @@ void PretoeBranco::armazenaPixel(ofstream &arquivodesaida){
 		}
 		else
 		{
-		matrizR[i][j] = cinza;
-		matrizG[i][j] = cinza;
-		matrizB[i][j] = cinza;
+		matrizR[i][j] = (char)cinza;
+		matrizG[i][j] = (char)cinza;
+		matrizB[i][j] = (char)cinza;
 		arquivodesaida << matrizR[i][j];
 		arquivodesaida << matrizG[i][j];
 		arquivodesaida << matrizB[i][j];

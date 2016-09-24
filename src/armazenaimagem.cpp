@@ -14,17 +14,17 @@ ArmazenaImagem::ArmazenaImagem(){
 	altura = 0;
 	max_cor = 255;
 
-	matrizR = new char*[altura];
+	matrizR = new unsigned char*[altura];
 	for(int i = 0; i < altura; i++)
-	matrizR[i] = new char[largura];
+	matrizR[i] = new unsigned char[largura];
 
-	matrizG = new char*[altura];
+	matrizG = new unsigned char*[altura];
 	for(int i = 0; i < altura; i++)
-	matrizG[i] = new char[largura];
+	matrizG[i] = new unsigned char[largura];
 
-	matrizB = new char*[altura];
+	matrizB = new unsigned char*[altura];
 	for(int i = 0; i < altura; i++)
-	matrizB[i] = new char[largura];
+	matrizB[i] = new unsigned char[largura];
 
 }
 
@@ -156,17 +156,17 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 	int j, k;
 	char r, g, b;
 
-	matrizR = new char*[altura];
+	matrizR = new unsigned char*[altura];
 	for(int i = 0; i < altura; i++)
-	matrizR[i] = new char[largura];
+	matrizR[i] = new unsigned char[largura];
 
-	matrizG = new char*[altura];
+	matrizG = new unsigned char*[altura];
 	for(int i = 0; i < altura; i++)
-	matrizG[i] = new char[largura];
+	matrizG[i] = new unsigned char[largura];
 
-	matrizB = new char*[altura];
+	matrizB = new unsigned char*[altura];
 	for(int i = 0; i < altura; i++)
-	matrizB[i] = new char[largura];
+	matrizB[i] = new unsigned char[largura];
 
 
 	for(j = 0; j < altura; j++)
