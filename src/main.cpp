@@ -2,45 +2,75 @@
 #include "negativo.hpp"
 #include "polarizado.hpp"
 #include "pretoebranco.hpp"
-#include "media3x3.hpp"
+#include "media.hpp"
 
 int main (){
 
-
+	system("clear");
 	cout << "\n\n------------------------------MENU DE OPERAÇÕES------------------------------" << endl;
-	cout << "\n\n Escolha o filtro desejado: " << endl;
-	cout << "\n\n\n\t(1) - Normal\n\t(2) - Negativo\n\t(3) - Polarizado\n\t(4) - Preto e Branco\n\t(5) - Média\n\t(0) - Sair\n" << endl;
-	cout << "\n\n-----------------------------------------------------------------------------" << endl;
+	cout << "\n \tESCOLHA O FILTRO DESEJADO PARA SER APLICADO EM UMA IMAGEM:" << endl;
+	cout << "\n-----------------------------------------------------------------------------" << endl;
+	cout << "\n\n\t(1) - Normal\n\n\t(2) - Negativo\n\n\t(3) - Polarizado\n\n\t(4) - Preto e Branco\n\n\t(5) - Média\n\n\t(6) - Sair\n\n" << endl;
+	cout << "\n-----------------------------------------------------------------------------" << endl;
+	string escolha;
 	int opcao = 0;
 	cout << "Escolha uma opção: ";
-	cin >> opcao;
+
+	do{
+	getline(cin,escolha);
+
+	if(isdigit(escolha[0]))
+	{
+	opcao = stoi(escolha);
+	}
+
+	if(opcao < 1 || opcao > 6)
+	cout << "Opção inválida! Digite uma nova opção: ";
+
+	}while(opcao < 1 || opcao > 6);
 
 	ArmazenaImagem *armazena = new ArmazenaImagem();
 	Negativo *negativo = new Negativo();
 	Polarizado *polarizado = new Polarizado();
 	PretoeBranco *pretoebranco = new PretoeBranco();
-	Media3x3 *media3x3 = new Media3x3();
+	Media *media = new Media();
 
 	ofstream arquivodesaida;
 
-	if(opcao == 1)
+	if(opcao == 1){
 	armazena->armazenaDados(arquivodesaida);
-
-	if(opcao == 2)
-	negativo->armazenaDados(arquivodesaida);
-
-	if(opcao == 3)
-	polarizado->armazenaDados(arquivodesaida);
-
-	if(opcao == 4)
-	pretoebranco->armazenaDados(arquivodesaida);
-
-	if(opcao == 5)
-	media3x3->armazenaDados(arquivodesaida);
-
-	if(opcao == 0){
 	system("clear");
-	cout << "\n\nSaindo do programa...\n\n" << endl;
+	cout << "\n\n\n\n\n\n\n\n\n\t\t\tIMAGEM NOVA CRIADA\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+	}
+
+	if(opcao == 2){
+	negativo->armazenaDados(arquivodesaida);
+	system("clear");
+	cout << "\n\n\n\n\n\n\n\n\n\t\t\tIMAGEM NOVA CRIADA\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+	}
+
+	if(opcao == 3){
+	polarizado->armazenaDados(arquivodesaida);
+	system("clear");
+	cout << "\n\n\n\n\n\n\n\n\n\t\t\tIMAGEM NOVA CRIADA\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+
+	}
+
+	if(opcao == 4){
+	pretoebranco->armazenaDados(arquivodesaida);
+	system("clear");
+	cout << "\n\n\n\n\n\n\n\n\n\t\t\tIMAGEM NOVA CRIADA\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+	}
+
+	if(opcao == 5){
+	media->armazenaDados(arquivodesaida);
+	system("clear");
+	cout << "\n\n\n\n\n\n\n\n\n\t\t\tIMAGEM NOVA CRIADA\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+	}
+
+	if(opcao == 6){
+	system("clear");
+	cout << "\n\n\n\n\n\n\n\n\n\t\t\tSAINDO DO PROGRAMA...\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
 	}
 	return 0;
 

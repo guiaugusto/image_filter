@@ -75,7 +75,9 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 	ifstream arquivo1;
 	string nomedoarquivo1;
 
-	cout << "Digite a imagem que você deseja utilizar para aplicar o filtro: ";
+	system("clear");
+
+	cout << "\nDigite a imagem que você deseja utilizar para aplicar o filtro: ";
 	cin >> nomedoarquivo1;
 
 	nomedoarquivo1 = "./doc/" + nomedoarquivo1 + ".ppm";
@@ -85,7 +87,7 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 	if(!arquivo1.is_open())
 	{
 
-	cout << "Arquivo não encontrado ou tipo de imagem inválida." << endl;
+	cout << "\n\nArquivo não encontrado ou tipo de imagem inválida." << endl;
 	return;
 	}
 	else
@@ -97,7 +99,7 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 
 	if(tipo != "P6")
 	{
-	cout << "Tipo de imagem inválida! Saindo..." << endl;
+	cout << "\n\nTipo de imagem inválida!" << endl;
 	return;
 	}
 
@@ -128,21 +130,22 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 
 	string nomedoarquivo2;
 
-	cout << "Digite o nome da nova imagem que foi alterada pelo filtro selecionado: " << endl;
+	cout << "\n\nDigite o nome da nova imagem criada pelo filtro selecionado: ";
 	cin >> nomedoarquivo2;
 
 	nomedoarquivo2 = "./doc/" + nomedoarquivo2 + ".ppm";
 
 	while(nomedoarquivo2 == nomedoarquivo1)
 	{
-	cout << "\nNome de arquivo inválido. Por favor, insira um novo nome: ";
+	cout << "\n\nNome de arquivo inválido. Por favor, insira um novo nome: ";
 	cin >> nomedoarquivo2;
 	}
 
 	arquivodesaida.open(nomedoarquivo2.c_str(),ios::binary);
 
 	if(!arquivodesaida.is_open()){
-	cout << "Erro na criação do novo arquivo!" << endl;
+	system("clear");
+	cout << "\n\n\n\n\n\tErro na criação do novo arquivo!" << endl;
 	return;
 	}
 
