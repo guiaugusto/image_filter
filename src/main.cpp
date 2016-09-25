@@ -7,10 +7,10 @@
 int main (){
 
 
-	cout << "\nBem vindo a tela inicial para aplicação de filtro em imagens! " << endl;
-	cout << "\n\n No momento temos apenas os seguintes filtros: " << endl;
-	cout << "\n\n\n(1) - Normal\n(2) - Negativo\n(3) - Polarizado\n(4) - Preto e Branco\n(5) - Média 3 x 3\n(6) - Média 5 x 5\n(7) - Média 7 x 7\n(0) - Sair\n" << endl;
-
+	cout << "\n\n------------------------------MENU DE OPERAÇÕES------------------------------" << endl;
+	cout << "\n\n Escolha o filtro desejado: " << endl;
+	cout << "\n\n\n\t(1) - Normal\n\t(2) - Negativo\n\t(3) - Polarizado\n\t(4) - Preto e Branco\n\t(5) - Média\n\t(0) - Sair\n" << endl;
+	cout << "\n\n-----------------------------------------------------------------------------" << endl;
 	int opcao = 0;
 	cout << "Escolha uma opção: ";
 	cin >> opcao;
@@ -38,7 +38,10 @@ int main (){
 	if(opcao == 5)
 	media3x3->armazenaDados(arquivodesaida);
 
-
+	if(opcao == 0){
+	system("clear");
+	cout << "\n\nSaindo do programa...\n\n" << endl;
+	}
 	return 0;
 
 }

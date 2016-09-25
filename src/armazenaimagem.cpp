@@ -3,7 +3,6 @@
 #include <cstdio>
 #include <iostream>
 #include <cstring>
-#include <vector>
 
 using namespace std;
 
@@ -86,8 +85,8 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 	if(!arquivo1.is_open())
 	{
 
-	cout << "Arquivo não encontrado! Saindo..." << endl;
-
+	cout << "Arquivo não encontrado ou tipo de imagem inválida." << endl;
+	return;
 	}
 	else
 	{
@@ -109,16 +108,11 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 
 	if(comentario[0] != '#')
 	{
-	cout << "Comentario armazenado: " << comentario << endl;
 	int tamanho = comentario.length()+1;
-	cout << "Tamanho do comentário: " << tamanho << endl;
 	arquivo1.seekg(-tamanho,ios_base::cur);
 	arquivo1 >> largura;
-	cout << "Largura: " << largura << endl;
 	arquivo1 >> altura;
-	cout << "Altura: " << altura << endl;
 	arquivo1 >> max_cor;
-	cout << "Intensidade máxima: " << max_cor << endl;
 	break;
 	}
 
@@ -141,13 +135,16 @@ void ArmazenaImagem::armazenaDados(ofstream &arquivodesaida){
 
 	while(nomedoarquivo2 == nomedoarquivo1)
 	{
-	cout << "Nome de arquivo inválido. Por favor, insira um novo nome: ";
+	cout << "\nNome de arquivo inválido. Por favor, insira um novo nome: ";
 	cin >> nomedoarquivo2;
 	}
 
 	arquivodesaida.open(nomedoarquivo2.c_str(),ios::binary);
 
-	//fazer condição para caso aconteça algum erro
+	if(!arquivodesaida.is_open()){
+	cout << "Erro na criação do novo arquivo!" << endl;
+	return;
+	}
 
 	arquivodesaida << tipo << endl;
 	arquivodesaida << largura << " " << altura << endl;
