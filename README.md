@@ -1,6 +1,6 @@
 Image filter
 _________________________________________________________________________
-Instruções para o uso do EP1
+Instruções para o uso do EP2
 -------------------------------------------------------------------------
 
 Para a inicialização do programa, será feito o uso do Makefile.
